@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# PyCharm
+.idea/
+
+dictate_gui_old.py
+temp.*
+transcript*
+

@@ -22,12 +22,15 @@ FORMAT = pyaudio.paInt16
 recording = False
 frames = []
 
+
 def top_three_words(text):
     words = re.findall(r"\w+", text.lower())
-    stop = {"the","is","a","an","and","or","of","to","in","for","that","on","with","it","be","this","you","i","we","at","by"}
+    stop = {"the", "is", "a",  "an", "and", "or", "of", "to", "in", "for", "that", "on", "with", "it", "be", "this",
+            "you", "i", "we", "at", "by"}
     filtered = [w for w in words if w not in stop]
     common = Counter(filtered).most_common(3)
     return "_".join([c[0] for c in common]) if common else "no_summary"
+
 
 def record_audio():
     global recording, frames
@@ -42,11 +45,13 @@ def record_audio():
     stream.close()
     pa.terminate()
 
+
 def transcribe_audio(filename):
     model = whisper.load_model("base")
     # Or model.transcribe(filename, language="en") if you want to force English
     result = model.transcribe(filename)
     return result["text"]
+
 
 def main():
     layout = [
@@ -58,6 +63,7 @@ def main():
 
     window = sg.Window("Whisper GUI", layout)
     record_thread = None
+    global recording
 
     while True:
         event, _ = window.read(timeout=100)
@@ -66,14 +72,14 @@ def main():
 
         if event == "Record":
             sg.popup_quick_message("Recording started...", auto_close_duration=1)
-            global recording
+            sg.popup_quick_message("Stopping recording...", auto_close_duration=1)
             recording = True
             record_thread = Thread(target=record_audio, daemon=True)
             record_thread.start()
 
         elif event == "Stop":
             if recording:
-                sg.popup_quick_message("Stopping recording...", auto_close_duration=1)
+
                 recording = False
                 if record_thread and record_thread.is_alive():
                     record_thread.join()

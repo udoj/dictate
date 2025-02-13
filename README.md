@@ -1,8 +1,26 @@
-# Whisper Recorder
+# 🎙️ Dictate your prompts
 
-Two Python scripts to record and transcribe audio using OpenAI Whisper.
+Transform your voice into text using OpenAI Whisper - a powerful speech-to-text tool that makes transcription seamless and efficient.
+ 
+![Dictate Demo](dictate.png)
+                                                                                                                                               
+## 🚀 Getting Started                                                                                 
 
-## Installation
+### Console Application
+```bash
+python dictate_console.py
+```
+Press ENTER to start recording, and ENTER again to stop. Your transcript will be displayed and saved automatically with a summary of its key words.
+
+### Desktop Interface
+```bash
+python dictate_gui.py
+```
+Use the intuitive interface to record, stop, and copy your transcriptions. Monitor your audio levels in real-time through the visual meter.
+
+Transcripts are automatically saved as `transcript_[timestamp]_[keywords].txt`, where keywords are the three most common meaningful words from your recording (e.g., `transcript_20240215_meeting_project_review.txt`).
+
+## 📋 Installation
 
 1. **Clone or Download** this repository.
 2. **Create & activate** a Python virtual environment:
@@ -21,32 +39,6 @@ Two Python scripts to record and transcribe audio using OpenAI Whisper.
    ```bash
    pip install -r requirements.txt
    ```
-
-## Scripts
-
-### 1. Console Version
-
-Run:
-```bash
-python whisper_console.py
-```
-
-Press ENTER to start recording, and ENTER again to stop.
-
-The transcript is printed and saved to a `transcript_YYYYMMDD_HHMMSS_summary.txt` file.
-
-### 2. GUI Version
-
-Run:
-```bash
-python whisper_gui.py
-```
-
-Click **Record** to start, **Stop** to end.
-
-The transcript appears in the window, automatically saved to a file.
-
-Click **Copy** to copy it to your clipboard.
 
 ## Notes
 
